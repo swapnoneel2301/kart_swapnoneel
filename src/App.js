@@ -36,20 +36,7 @@ export default function App(props) {
           <Home />
         </Route>
 
-        
-        
-
-        
-
-        
       </Switch>
-
-        
-
-        
-        
-        
-
 
     </div>
   );
