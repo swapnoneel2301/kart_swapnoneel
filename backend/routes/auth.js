@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { handleError } = require('../utils');
-var { users } = require('../db');
+var { users } = require('../db.js');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const config = require('../config.json');
@@ -56,6 +56,7 @@ router.post('/login', (req, res) => {
         if (err) {
             return handleError(res, err);
         }
+        // console.log(user);
         if (!user) {
             return res.status(400).json({ 
 		success: false,
