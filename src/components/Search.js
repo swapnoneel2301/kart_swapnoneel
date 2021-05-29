@@ -270,9 +270,9 @@ class Search extends React.Component {
       <>
         {/* Display Header with Search bar */}
         
-        <Header history={this.props.history} style={{width:'150%'}}>
+        <Header history={this.props.history}>
           {/* TODO: CRIO_TASK_MODULE_PRODUCTS - Display search bar in the header for Products page */}
-          <Input.Search placeholder="Search" onChange={this.debounce} onSearch={this.search} style={{width:'100%' ,marginLeft:30,marginRight:100,marginTop:10}} enterButton  />
+          <Input.Search placeholder="Search" onChange={this.debounceSearch} onSearch={this.search}  enterButton  />
         </Header>
 
       
