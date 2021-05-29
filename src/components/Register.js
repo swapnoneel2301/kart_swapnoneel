@@ -111,10 +111,10 @@ class Register extends React.Component {
     const username = this.state.username;
     const password = this.state.password;
     const confirmPassword = this.state.confirmPassword;
-    if(username==''){
+    if(username===''){
       message.error('Username is required field');
       return false;
-    }else if(password==''){
+    }else if(password===''){
       message.error('Password field is required');
       return false;
     }else if(username.length<6||username.length>32){

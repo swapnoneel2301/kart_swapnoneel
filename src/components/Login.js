@@ -3,6 +3,7 @@ import { Button, Input, message } from "antd";
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { config } from "../App";
+// import { render } from "enzyme";
 import Footer from "./Footer";
 import Header from "./Header";
 
@@ -28,7 +29,6 @@ class Login extends React.Component {
     };
   }
 
-  // TODO: CRIO_TASK_MODULE_LOGIN - Fetch the API response
   /**
    * Perform the API call over the network and return the response
    *
@@ -83,6 +83,8 @@ class Login extends React.Component {
   };
 
   // TODO: CRIO_TASK_MODULE_LOGIN - Validate the input
+  
+
   /**
    * Validate the input values so that any bad or illegal values are not passed to the backend.
    *
@@ -106,7 +108,8 @@ class Login extends React.Component {
     return true;
   };
 
-  // TODO: CRIO_TASK_MODULE_LOGIN - Check the API response
+
+
   /**
    * Check the response of the API call to be valid and handle any failures along the way
    *
@@ -135,7 +138,8 @@ class Login extends React.Component {
     return true;
   };
 
-  // TODO: CRIO_TASK_MODULE_LOGIN - Persist user's login information
+  
+
   /**
    * Store the login information so that it can be used to identify the user in subsequent API calls
    *
@@ -173,7 +177,7 @@ class Login extends React.Component {
 
   clearFields = ()=>{
     this.setState({username:'',password:''});
-  }
+  };
 
   login = async () => {
      const inputValidation = this.validateInput();
@@ -195,8 +199,8 @@ class Login extends React.Component {
    * JSX and HTML goes here
    * We have a text field and a password field (each with data binding to state), and a submit button that calls login()
    */
-  render() {
-    return (
+  render(){
+    return(
       <>
         {/* Display Header */}
         <Header history={this.props.history} />
@@ -238,13 +242,16 @@ class Login extends React.Component {
               Login
             </Button>
           </div>
-        </div>
+         </div>
 
         {/* Display the footer */}
         <Footer></Footer>
       </>
     );
-  }
-}
+   } 
+
+ }
+
+
 
 export default withRouter(Login);

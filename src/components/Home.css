@@ -1,6 +1,3 @@
-.home-container{
-  border:1px solid black;
-}
 .home-buttons {
   display: flex;
   justify-content: center;
@@ -17,4 +14,3 @@
 .home-welcome-text img {
   margin: 3px 10px 0px 10px;
 }
-

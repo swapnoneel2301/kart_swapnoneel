@@ -29,6 +29,12 @@ export default function App() {
                 </Button>
              </Link>
             
+            
+            <Link to="/products">
+              <Button className="btn-block" type="primary" block={true}>
+                Browse Products
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

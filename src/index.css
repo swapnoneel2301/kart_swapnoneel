@@ -29,7 +29,6 @@ hr {
   border-top: 1px solid rgb(233, 233, 233);
 }
 
-/* TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Add a border of 1px solid #D1D5DA */
 .container {
   width: 500px;
   margin: 0 auto;
@@ -37,7 +36,6 @@ hr {
   box-sizing: content-box;
   text-align: center;
   border-radius: 4px;
-  /* TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Add a border of 1px solid #d1d5da */
 }
 
 .container-fullpage {
