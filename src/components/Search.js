@@ -219,18 +219,26 @@ class Search extends React.Component {
    * -    If the debounceTimeout class property is already set, use clearTimeout to remove the timer from memory: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout
    * -    Call setTimeout to start a new timer that calls below defined search() method after 300ms and store the return value in the debounceTimeout class property: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout
    */
-  debounceHelper = (fn,d)=>{
-    let timer;
-    return function(event){
-        clearTimeout(timer);
-        let text = event.target.value;
-        timer =  setTimeout(()=>{
-            fn(text);
-        },d);
-    }
-  }
+  // debounceHelper = (fn,d)=>{
+  //   var timer;
+  //   return function(event){
+  //       clearTimeout(timer);
+  //       let text = event.target.value;
+  //       timer =  setTimeout(()=>{
+  //           fn(text);
+  //       },d);
+  //   }
+  // }
   
-  debounceSearch = this.debounceHelper(this.search,300);
+  // debounceSearch = this.debounceHelper(this.search,300);
+
+    debounceSearch = (event)=>{
+      clearTimeout(this.debounceTimeout);
+      let text = event.target.value;
+      this.debounceTimeout = setTimeout(()=>{
+        this.search(text);
+      },300);
+    }
 
   
   
@@ -272,8 +280,12 @@ class Search extends React.Component {
         
         <Header history={this.props.history}>
           {/* TODO: CRIO_TASK_MODULE_PRODUCTS - Display search bar in the header for Products page */}
-          <Input.Search placeholder="Search" onChange={this.debounceSearch} onSearch={this.search}  enterButton  />
+          <Input.Search placeholder="Search" style={{width:'80%',margin:'4rem'}} onChange={this.debounceSearch} onSearch={this.search} enterButton  />
+        
         </Header>
+
+        {/* <Input.Search className="d-block d-md-none" placeholder="Search" style={{width:'50%'}} onChange={this.debounceSearch} onSearch={this.search} enterButton  />
+         */}
 
       
 
