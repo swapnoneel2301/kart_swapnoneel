@@ -2,6 +2,7 @@ import { Input, message } from "antd";
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { config } from "../App";
+import Cart from "./Cart";
 import Header from "./Header";
 import Product from "./Product";
 import { Row, Col } from "antd";
@@ -22,6 +23,8 @@ import "./Search.css";
  * @class Search component handles the Products list page UI and functionality
  * 
  * Contains the following fields
+ * @property {React.RefObject} cartRef 
+ *    Reference to Cart component (to trigger certain methods within the cart component)
  * @property {number} debounceTimeout 
  *    Holds the return value from setTimeout() for the search bar debouncer
  * @property {Product[]} products 
@@ -36,6 +39,7 @@ import "./Search.css";
 class Search extends React.Component {
   constructor() {
     super();
+    this.cartRef = React.createRef();
     this.debounceTimeout = 0;
     this.products = [];
     this.state = {
@@ -258,7 +262,8 @@ class Search extends React.Component {
           product={product}
           addToCart={() => {
             if (this.state.loggedIn) {
-              message.info("Cart functionality not implemented yet");
+              // message.info("Cart functionality not implemented yet");
+              this.cartRef.current.pushToCart(product._id,1,true);
             }else{
               this.props.history.push('/login');
             }
@@ -272,6 +277,7 @@ class Search extends React.Component {
    * JSX and HTML goes here
    * We require a text field as the search (optionally along with a button for submitting the search query)
    * We also iterate over the filteredProducts list and display each product as a component
+   * Display Cart sidebar component if user is logged in
    */
   render() {
     return (
@@ -281,7 +287,6 @@ class Search extends React.Component {
         <Header history={this.props.history}>
           {/* TODO: CRIO_TASK_MODULE_PRODUCTS - Display search bar in the header for Products page */}
           <Input.Search placeholder="Search" style={{width:'80%',margin:'4rem'}} onChange={this.debounceSearch} onSearch={this.search} enterButton  />
-        
         </Header>
 
         {/* <Input.Search className="d-block d-md-none" placeholder="Search" style={{width:'50%'}} onChange={this.debounceSearch} onSearch={this.search} enterButton  />
@@ -293,7 +298,7 @@ class Search extends React.Component {
         <Row>
           {/* Display products */}
           <Col
-            xs={{ span: 24 }}
+            xs={{ span: 24 }} md={{ span: (this.state.loggedIn) ? 18:24 }}
           >
             <div className="search-container ">
               {/* Display each product item wrapped in a Col component */}
@@ -312,6 +317,18 @@ class Search extends React.Component {
           </Col>
 
           {/* Display cart */}
+          {this.state.loggedIn && this.products.length && (
+            <Col
+              xs={{ span: 24 }}
+              md={{ span: 6 }}
+              className="search-cart"
+            >
+              <div>
+                {/* TODO: CRIO_TASK_MODULE_CART - Add a Cart to the products page */}
+                <Cart ref = {this.cartRef} products = {this.products} token={localStorage.getItem('token')} history = {this.props.history}/>
+              </div>
+            </Col>
+          )}
         </Row>
 
         {/* Display the footer */}
