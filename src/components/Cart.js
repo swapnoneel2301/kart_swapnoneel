@@ -13,7 +13,6 @@ import "./Cart.css";
  * @property {string} image - Contains URL for the product image
  * @property {string} _id - Unique ID for the product
  */
-
 /**
  * @typedef {Object} CartItem
  * @property {string} productId - Unique ID for the product
@@ -141,7 +140,7 @@ export default class Cart extends React.Component {
     this.setState({
       loading: false,
     });
-
+    
     if (this.validateResponse(errored, response)) {
       // console.log(response);
       return response;
@@ -225,7 +224,7 @@ export default class Cart extends React.Component {
     });
 
     if (this.validateResponse(errored, response)) {
-      this.refreshCart();
+      await this.refreshCart();
     }
   };
 
