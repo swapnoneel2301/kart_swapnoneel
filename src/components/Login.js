@@ -3,7 +3,6 @@ import { Button, Input, message } from "antd";
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { config } from "../App";
-// import { render } from "enzyme";
 import Footer from "./Footer";
 import Header from "./Header";
 

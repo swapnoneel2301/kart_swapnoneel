@@ -13,6 +13,7 @@ import "./Cart.css";
  * @property {string} image - Contains URL for the product image
  * @property {string} _id - Unique ID for the product
  */
+
 /**
  * @typedef {Object} CartItem
  * @property {string} productId - Unique ID for the product
@@ -233,6 +234,9 @@ export default class Cart extends React.Component {
    * -    Call the previously defined getCart() function asynchronously and capture the returned value in a variable
    * -    If the returned value exists,
    *      -   Update items state variable with the response (optionally add the corresponding product object of that item as a sub-field)
+   * -    If the cart is being displayed from the checkout page, or the cart is empty,
+   *      -   Display an error message
+   *      -   Redirect the user to the products listing page
    */
   refreshCart = async () => {
     const cart = await this.getCart();
@@ -248,6 +252,7 @@ export default class Cart extends React.Component {
       });
     }
 
+    // TODO: CRIO_TASK_MODULE_CHECKOUT - If the user visits "/checkout" directly and cart is empty, display an error message and redirect to the "/products" page
   };
 
   /**
@@ -266,7 +271,6 @@ export default class Cart extends React.Component {
       : 0;
   };
 
-  // TODO: CRIO_TASK_MODULE_CART - Implement a lifecycle method to populate the Cart when page is loaded
   /**
    * Function that runs when component has loaded
    * This is the function that is called when the page loads the cart component
@@ -279,6 +283,8 @@ export default class Cart extends React.Component {
   }
 
   // TODO: CRIO_TASK_MODULE_CART - Implement getQuantityElement(). If props.checkout is not set, display a Input field.
+
+  // TODO: CRIO_TASK_MODULE_CHECKOUT - Update getQuantityElement(). When displayed in the checkout page, display quantity of the item in cart (should be non-editable)
   /**
    * Creates the view for the product quantity added to cart
    *
@@ -404,8 +410,11 @@ export default class Cart extends React.Component {
             onClick={()=>{
               if(this.state.items.length===0) 
                 message.error('You must add items to cart first');
-              else
-               message.info('Checkout functionality not implemented yet');
+              else{
+                // message.info('Checkout functionality not implemented yet');
+                this.props.history.push('/checkout');
+              }
+              
             }}> 
                      <ShoppingCartOutlined /> Checkout 
           </Button>
